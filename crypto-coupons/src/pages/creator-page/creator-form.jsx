@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { ColorConstants } from "../../ColorConstants";
 import QRCode from "qrcode.react";
 import { v5 as uuidv5 } from "uuid";
+import { optInSubscription } from "../../backend/pushNotif";
+import { gSignerContext, Web3StateContext } from "../../contexts/dappContexts";
 function CreatorForm() {
   const [data, setData] = React.useState({});
   const [qrString, setQrString] = React.useState("");
-
+  const { web3State } = useContext(Web3StateContext);
+  const [optIn, setOptIn] = useState(false);
+  const { address } = web3State;
+  const { gSigner } = useContext(gSignerContext);
   const onChange = (e, limit = 0) => {
     if (limit !== 0) {
       // limit the characters to 4
@@ -92,6 +97,26 @@ function CreatorForm() {
               className="rounded-lg border-none focus:ring-0 py-3 px-5"
               style={{ background: ColorConstants.greenDark }}
             />
+          </div>
+          <div className="flex gap-2">
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              value={optIn}
+              onChange={(e) => {
+                if (!address) {
+                  alert("Please connect your wallet");
+                  return;
+                }
+                setOptIn(!optIn);
+                if (e.target.checked === true) {
+                  optInSubscription(address, gSigner);
+                }
+              }}
+              className="p-3 accent-lime-200 rounded-md checked:bg-[#0d8469] checked:text-black"
+            />
+            <label>Enable OptIn</label>
           </div>
 
           <button
