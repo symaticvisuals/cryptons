@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { connectBWallet} from "../../backend/wallet";
 
-
 import { ColorConstants } from "../../ColorConstants";
 import { CreatorForm } from "./creator-form";
 import { RedeemForm } from "./redeem-form";
