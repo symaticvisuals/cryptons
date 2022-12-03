@@ -1,14 +1,18 @@
 
-import React, { useState } from "react";
+// import { getSocialLoginSDK, socialLoginSDK } from "@biconomy/web3-auth";
+import axios from "axios";
+import React, { useEffect, useState, useCallback } from "react";
+import { sendNotification , optInSubscription } from "../../backend/pushNotif";
 
 import SocialLogin, { getSocialLoginSDK } from "@biconomy/web3-auth";
 import { ethers } from "ethers";
 import "@biconomy/web3-auth/dist/src/style.css"
 import { ColorConstants } from "../../ColorConstants";
+import { CreatorForm } from "./creator-form";
+import { RedeemForm } from "./redeem-form";
 
 function CreatorPage() {
   const [data, setData] = useState("No result");
-  // const [address, setAddress] = useState(null);
   const initialState = {
     provider: null,
     web3Provider: null,
@@ -89,6 +93,7 @@ function CreatorPage() {
     };
   }, [address, connect, socialLoginSDK]);
 
+
   const callConnectWallet = async () => {
     // sendNotification("0x125a287746989EABeb71c795c5114E311C4D02f7")
     connect();
@@ -102,6 +107,14 @@ function CreatorPage() {
     console.log("testt", address, gSigner, chainId);
     optInSubscription(address, gSigner);
   };
+  const [checked, setChecked] = useState(false);
+  const [formData, setFormData] = useState({
+    amount: 0,
+    number_of_coupons: 0,
+    expiry_date: "",
+    keywords: "CRYPTONS",
+  });
+
 
   return (
     <div className="flex justify-center mt-[4vh]  h-full overflow-y-auto">
