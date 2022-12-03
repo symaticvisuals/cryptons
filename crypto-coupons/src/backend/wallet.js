@@ -20,7 +20,7 @@ export const connectBWallet = async () => {
 
     if (!socialLoginSDK?.web3auth?.provider) return;
     const provider = new ethers.providers.Web3Provider(socialLoginSDK.web3auth.provider);
-    socialLoginSDK.hideWallet();
+    // socialLoginSDK.hideWallet();
 
     const accounts = await provider.listAccounts();
     return accounts
