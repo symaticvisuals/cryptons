@@ -1,4 +1,5 @@
 
+import { getSocialLoginSDK, socialLoginSDK } from "@biconomy/web3-auth";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { connectBWallet} from "../../backend/wallet";
@@ -15,12 +16,14 @@ function CreatorPage() {
   useEffect(() => {
     if (address) {
       console.log("hidelwallet");
+
       socialLoginSDK.hideWallet();
+
     }
   }, [address]);
   const callConnectWallet = async () =>{
     const res = await connectBWallet();
-    console.log(res)
+    console.log(JSON.stringify(res))
     setAddress(res)
   }
 

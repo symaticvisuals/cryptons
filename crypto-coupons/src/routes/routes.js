@@ -7,6 +7,8 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import ClaimLayout from "../layout/Claim";
+import { Claim } from "../pages/claim";
 
 const Constants = require("./Constants");
 
@@ -17,7 +19,9 @@ export const router = createBrowserRouter(
       <Route path="/" element={<DApp />}>
         <Route path="" element={<CreatorPage />} />
       </Route>
-
+      <Route path="/claim" element={<ClaimLayout />}>
+        <Route path="" element={<Claim />} />
+      </Route>
       <Route path="/details" element={<>Invalid ID</>}></Route>
       {/* </Route> */}
       <Route

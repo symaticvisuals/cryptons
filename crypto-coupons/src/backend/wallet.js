@@ -5,7 +5,7 @@ import SocialLogin from "@biconomy/web3-auth"
 import { ethers } from "ethers";
 
 
-const socialLoginSDK = new SocialLogin();
+export const socialLoginSDK = new SocialLogin();
 
 export const connectBWallet = async () => {
 
