@@ -1,28 +1,106 @@
-import React, { useEffect, useState } from "react";
+import { getSocialLoginSDK } from "@biconomy/web3-auth";
+import { ethers } from "ethers";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { ColorConstants } from "../../../ColorConstants";
-// import { connectBWallet } from "../../../backend/wallet";
-import { socialLoginSDK } from "@biconomy/web3-auth";
-import BrandLogo from "../../../assets/brandLogo.png";
-import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
 import { FetchNotifications } from "../../../hooks/fetch-notifications";
-import { RiNotification3Fill } from "react-icons/ri";
+import BrandLogo from "../../../assets/brandLogo.png";
+import { Menu } from "@szhsin/react-menu";
+import { MenuItem, MenuButton } from "@szhsin/react-menu";
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+import { RiNotification4Fill } from "react-icons/ri";
+import {
+  gSignerContext,
+  SocialLoginSDKContext,
+  Web3StateContext,
+} from "../../../contexts/dappContexts";
 
 function TopBar() {
-  const [address, setAddress] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const { data } = FetchNotifications();
-  useEffect(() => {
-    if (address) {
-      console.log("hidelwallet");
+  const { web3State, setWeb3State } = React.useContext(Web3StateContext);
 
+  const [loading, setLoading] = useState(false);
+  const { socialLoginSDK, setSocialLoginSDK } = useContext(
+    SocialLoginSDKContext
+  );
+  const [userInfo, setUserInfo] = useState(null);
+  const { address } = web3State;
+  const { gSigner, setGSigner } = useContext(gSignerContext);
+  useEffect(() => {
+    console.log("hidelwallet");
+    if (socialLoginSDK && socialLoginSDK.provider) {
       socialLoginSDK.hideWallet();
     }
-  }, [address]);
+  }, [address, socialLoginSDK]);
+  const connect = useCallback(async () => {
+    if (address) return;
+    if (socialLoginSDK?.provider) {
+      setLoading(true);
+      console.log(socialLoginSDK.provider, "+++++++++++++=");
+      console.info("socialLoginSDK.provider", socialLoginSDK.provider);
+      const web3Provider = new ethers.providers.Web3Provider(
+        socialLoginSDK.provider
+      );
+      const signer = web3Provider.getSigner();
+      setGSigner(signer);
+      const gotAccount = await signer.getAddress();
+      const network = await web3Provider.getNetwork();
+      setWeb3State({
+        provider: socialLoginSDK.provider,
+        web3Provider: web3Provider,
+        ethersProvider: web3Provider,
+        address: gotAccount,
+        chainId: Number(network.chainId),
+      });
+      setLoading(false);
+      return;
+    }
+    if (socialLoginSDK) {
+      socialLoginSDK.showWallet();
+      return socialLoginSDK;
+    }
+    setLoading(true);
+    const sdk = await getSocialLoginSDK("0x13881");
+    sdk.showConnectModal();
+    sdk.showWallet();
+    setSocialLoginSDK(sdk);
+    setLoading(false);
+    return socialLoginSDK;
+  }, [address, socialLoginSDK]);
+
+  const getUserInfo = useCallback(async () => {
+    if (socialLoginSDK) {
+      const userInfo = await socialLoginSDK.getUserInfo();
+      console.log("userInfo", userInfo);
+      setUserInfo(userInfo);
+    }
+  }, [socialLoginSDK]);
+
+  // after metamask login -> get provider event
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (address) {
+        clearInterval(interval);
+      }
+      if (socialLoginSDK?.provider && !address) {
+        connect();
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [address, connect, socialLoginSDK]);
+
   const callConnectWallet = async () => {
+    // sendNotification("0x125a287746989EABeb71c795c5114E311C4D02f7")
+    connect();
+
     // const res = await connectBWallet();
-    // console.log(JSON.stringify(res));
-    // setAddress(res);
+    // console.log(JSON.stringify(res))
+    // setAddress(res)
   };
+
   return (
     <div
       className="h-16 flex items-center justify-between mx-5"
@@ -31,53 +109,18 @@ function TopBar() {
       <div className="flex items-center justify-center">
         <div className="mr-4">
           <Menu
-            
             menuButton={
               <MenuButton>
-                <RiNotification3Fill color="white" />
+                <RiNotification4Fill color="white" fontSize={"20px"} />
               </MenuButton>
-            }>
+            }
+            position="left"
+            transition>
             {data &&
-              data.length > 0 &&
-              data.map((item) => (
-                <MenuItem color="white">
-                  <div>{item.message}</div>
-                  <a
-                    href="#"
-                    class="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <div class="flex-shrink-0">
-                      <img
-                        class="w-11 h-11 rounded-full"
-                        src="/docs/images/people/profile-picture-1.jpg"
-                        alt="Jese image"
-                      />
-                      <div class="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-600 rounded-full border border-white dark:border-gray-800">
-                        <svg
-                          class="w-3 h-3 text-white"
-                          aria-hidden="true"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"></path>
-                          <path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="pl-3 w-full">
-                      <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">
-                        New message from{" "}
-                        <span class="font-semibold text-gray-900 dark:text-white">
-                          Jese Leos
-                        </span>
-                        : "Hey, what's up? All set for the presentation?"
-                      </div>
-                      <div class="text-xs text-blue-600 dark:text-blue-500">
-                        a few moments ago
-                      </div>
-                    </div>
-                  </a>
-                </MenuItem>
+              data?.map((item, i) => (
+                <MenuItem key={i}>{item?.message}</MenuItem>
               ))}
+            {/* <MenuItem>{data[0]?.message}</MenuItem> */}
           </Menu>
         </div>
         <button
