@@ -1,17 +1,29 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { connectBWallet} from "../../backend/wallet";
 
 import { ColorConstants } from "../../ColorConstants";
 
 function CreatorPage() {
   const [data, setData] = useState("No result");
+  const [address, setAddress] = useState(null);
   const previewStyle = {
     height: 700,
     windth: 1000,
     display: "flex",
     justifyContent: "center",
   };
-
+  useEffect(() => {
+    if (address) {
+      console.log("hidelwallet");
+      socialLoginSDK.hideWallet();
+    }
+  }, [address]);
+  const callConnectWallet = async () =>{
+    const res = await connectBWallet();
+    console.log(res)
+    setAddress(res)
+  }
   const camStyle = {
     display: "flex",
     justifyContent: "center",
@@ -23,6 +35,7 @@ function CreatorPage() {
         className=" font-sans  tracking-tighter w-1/3"
         style={{ color: ColorConstants.white }}>
         <button
+        onClick={()=>callConnectWallet()}
           type="button"
           class=" text-gray-900 bg-gradient-to-r transition-all ease-linear duration-200 from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-1 focus:outline-none   font-medium rounded-lg text-sm px-5 py-3 text-center mr-2 mb-2">
           Connect Wallet
