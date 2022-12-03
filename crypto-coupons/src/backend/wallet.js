@@ -6,7 +6,6 @@ import { ethers } from "ethers";
 
 
 export const socialLoginSDK = new SocialLogin();
-
 export const connectBWallet = async () => {
 
     if (socialLoginSDK && socialLoginSDK.provider) {
@@ -14,7 +13,7 @@ export const connectBWallet = async () => {
         console.log("logout")
         return null
       }
-
+      
     await socialLoginSDK.init('0x5'); 
     socialLoginSDK.showConnectModal();
     socialLoginSDK.showWallet();
