@@ -5,9 +5,11 @@ import { ColorConstants } from '../../ColorConstants'
 function ClaimLayout() {
   return (
     <div
-       className='min-h-screen text-white font-sans'
-      style={{ background: ColorConstants.black }}><Outlet /></div>
-  )
+      className="min-h-screen text-white font-sans"
+      style={{ background: ColorConstants.fadedBlack }}>
+      <Outlet />
+    </div>
+  );
 }
 
 export default ClaimLayout

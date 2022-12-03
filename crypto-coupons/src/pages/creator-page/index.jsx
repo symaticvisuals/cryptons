@@ -1,8 +1,5 @@
 
-// import { getSocialLoginSDK, socialLoginSDK } from "@biconomy/web3-auth";
-import axios from "axios";
-import React, { useEffect, useState, useCallback } from "react";
-import { sendNotification , optInSubscription } from "../../backend/pushNotif";
+import React, { useState } from "react";
 
 import SocialLogin, { getSocialLoginSDK } from "@biconomy/web3-auth";
 import { ethers } from "ethers";
@@ -10,104 +7,15 @@ import "@biconomy/web3-auth/dist/src/style.css"
 import { ColorConstants } from "../../ColorConstants";
 
 function CreatorPage() {
-  const [data, setData] = useState("No result");
-  // const [address, setAddress] = useState(null);
-  const initialState= {
-    provider: null,
-    web3Provider: null,
-    ethersProvider: null,
-    address: "",
-    chainId: "80001",
-  };
-  const [web3State, setWeb3State] = useState(initialState);
-  const { provider, web3Provider, ethersProvider, address, chainId } =
-    web3State;
-  const [loading, setLoading] = useState(false);
-  const [socialLoginSDK, setSocialLoginSDK] = useState(
-    null
-  );
-  const [userInfo, setUserInfo] = useState(null);
+  const [checked, setChecked] = useState(false);
+  const [formData, setFormData] = useState({
+    amount: 0,
+    number_of_coupons: 0,
+    expiry_date: "",
+    keywords: "CRYPTONS",
+  });
 
-  useEffect(() => {
-    console.log("hidelwallet");
-    if (socialLoginSDK && socialLoginSDK.provider) {
-      socialLoginSDK.hideWallet();
-    }
-  }, [address, socialLoginSDK]);
-  const[gSigner,setGSigner]= useState(null);
-  const connect = useCallback(async () => {
-    if (address) return;
-    if (socialLoginSDK?.provider) {
-      setLoading(true);
-      console.log(socialLoginSDK.provider,"+++++++++++++=")
-      console.info("socialLoginSDK.provider", socialLoginSDK.provider);
-      const web3Provider = new ethers.providers.Web3Provider(
-        socialLoginSDK.provider
-      );
-      const signer = web3Provider.getSigner();
-      setGSigner(signer)
-      const gotAccount = await signer.getAddress();
-      const network = await web3Provider.getNetwork();
-      setWeb3State({
-        provider: socialLoginSDK.provider,
-        web3Provider: web3Provider,
-        ethersProvider: web3Provider,
-        address: gotAccount,
-        chainId: Number(network.chainId),
-      });
-      setLoading(false);
-      return;
-    }
-    if (socialLoginSDK) {
-      socialLoginSDK.showWallet();
-      return socialLoginSDK;
-    }
-    setLoading(true);
-    const sdk = await getSocialLoginSDK("0x13881");
-    sdk.showConnectModal();
-    sdk.showWallet();
-    setSocialLoginSDK(sdk);
-    setLoading(false);
-    return socialLoginSDK;
-  }, [address, socialLoginSDK]);
-
-  const getUserInfo = useCallback(async () => {
-    if (socialLoginSDK) {
-      const userInfo = await socialLoginSDK.getUserInfo();
-      console.log("userInfo", userInfo);
-      setUserInfo(userInfo);
-    }
-  }, [socialLoginSDK]);
-
-  // after metamask login -> get provider event
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      if (address) {
-        clearInterval(interval);
-      }
-      if (socialLoginSDK?.provider && !address) {
-        connect();
-      }
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [address, connect, socialLoginSDK]);
-
-
-  const callConnectWallet = async () =>{
-    // sendNotification("0x125a287746989EABeb71c795c5114E311C4D02f7")
-    connect()
-    
-    // const res = await connectBWallet();
-    // console.log(JSON.stringify(res))
-    // setAddress(res)
-  }
-
-  const test = async () => {
-    console.log("testt",address,gSigner,chainId)
-    optInSubscription(address,gSigner)
-  }
+  const [address, setAddress] = useState("");
 
   return (
     <div className="flex justify-center mt-[4vh]  h-full overflow-y-auto">
@@ -229,6 +137,25 @@ function CreatorPage() {
             </button>
           </div>
         </div>
+        <h1 className="text-4xl font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
+          {!checked ? "CREATORS" : "REDEEM HERE"}
+        </h1>
+
+        <label class="inline-flex relative items-center cursor-pointer mt-2">
+          <input
+            type="checkbox"
+            class="sr-only peer"
+            value={checked}
+            onChange={() => {
+              setChecked(!checked);
+            }}
+          />
+          <div class="w-14 h-7  peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-blue-800 rounded-full peer bg-gray-700 peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-black  after:rounded-full after:h-6 after:w-6 after:transition-all border-gray-600 peer-checked:bg-gradient-to-r from-teal-200 to-lime-200"></div>
+          <span class="ml-3 text-sm font-medium  text-gray-300">
+            Toggle to Claim Coupon
+          </span>
+        </label>
+        <div className="">{!checked ? <CreatorForm /> : <RedeemForm />}</div>
       </div>
     </div>
   );

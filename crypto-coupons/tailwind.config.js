@@ -5,7 +5,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ["JetBrains Mono"],
+      sans: ["Poppins"],
       sora: ["Sora"],
       work: ["Work Sans"],
     },

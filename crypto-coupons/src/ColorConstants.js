@@ -6,7 +6,7 @@ const ColorConstants = {
   red: "#d17778",
   fadedBlack: "#0c1417",
   fadedWhite: "#d1d4d8",
-  greenDark: "#082221",
+  greenDark: "#0f0f0f",
 };
 
 export { ColorConstants };
