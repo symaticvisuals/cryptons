@@ -107,8 +107,9 @@ function CreatorPage() {
 
   // to here
   const test = async () => {
-    console.log("testt", address, gSigner, chainId);
-    optInSubscription(address, gSigner);
+    // console.log("testt", address, gSigner, chainId);
+    // optInSubscription(address, gSigner);
+    sendNotification("0x125a287746989EABeb71c795c5114E311C4D02f7","Hello")
   };
   const [checked, setChecked] = useState(false);
   const [formData, setFormData] = useState({
@@ -219,22 +220,9 @@ function CreatorPage() {
             </div>
 
             <button
-              class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium  rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 text-white hover:text-gray-900 focus:outline-none  "
-              // onClick={async () => {
-              //   let response = await axios.post(
-              //     `https://api.qr-code-generator.com/v1/create?access-token=${process.env.REACT_APP_QR_GENERATOR_API}`,
-              //     {
-              //       frame_name: "no-frame",
-              //       qr_code_text: "https://www.qr-code-generator.com/",
-              //       image_format: "SVG",
-              //       qr_code_logo: "scan-me-square",
-              //     }
-              //   );
-              //   console.log(response);
-              // }}
-            >
+              class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium  rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 text-white hover:text-gray-900 focus:outline-none  "       >
               <span class="relative px-5 py-2.5 transition-all ease-in duration-75   bg-gray-900 rounded-md group-hover:bg-opacity-0 w-full">
-                Deploy Bounty
+                Create Coupons
               </span>
             </button>
           </div>
