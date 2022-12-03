@@ -13,6 +13,8 @@ import { RedeemForm } from "./redeem-form";
 
 function CreatorPage() {
   const [data, setData] = useState("No result");
+
+  // from here
   const initialState = {
     provider: null,
     web3Provider: null,
@@ -103,6 +105,7 @@ function CreatorPage() {
     // setAddress(res)
   };
 
+  // to here
   const test = async () => {
     console.log("testt", address, gSigner, chainId);
     optInSubscription(address, gSigner);

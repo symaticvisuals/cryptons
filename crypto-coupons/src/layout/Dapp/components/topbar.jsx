@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ColorConstants } from "../../../ColorConstants";
-import { connectBWallet } from "../../../backend/wallet";
+// import { connectBWallet } from "../../../backend/wallet";
 import { socialLoginSDK } from "@biconomy/web3-auth";
 import BrandLogo from "../../../assets/brandLogo.png";
 import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
@@ -19,9 +19,9 @@ function TopBar() {
     }
   }, [address]);
   const callConnectWallet = async () => {
-    const res = await connectBWallet();
-    console.log(JSON.stringify(res));
-    setAddress(res);
+    // const res = await connectBWallet();
+    // console.log(JSON.stringify(res));
+    // setAddress(res);
   };
   return (
     <div
