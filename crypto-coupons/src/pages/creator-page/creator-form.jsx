@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import { ColorConstants } from "../../ColorConstants";
 import QRCode from "qrcode.react";
-import { v5 as uuidv5 } from "uuid";
+import { sha256 } from "js-sha256";
+
 import { optInSubscription } from "../../backend/pushNotif";
+// import json
+import Marketplace from "../../Marketplace.json";
 import { gSignerContext, Web3StateContext } from "../../contexts/dappContexts";
 function CreatorForm() {
   const [data, setData] = React.useState({});
@@ -25,7 +28,6 @@ function CreatorForm() {
     const qrCodeURL = document
       .getElementById("qrCodeEl")
       .toDataURL("image/png");
-    console.log(qrCodeURL);
     let aEl = document.createElement("a");
     aEl.href = qrCodeURL;
     aEl.download = "QR_Code.png";
@@ -34,26 +36,45 @@ function CreatorForm() {
 
   const ethers = require("ethers");
 
-  async function createCoupons (e){
+  const createCoupons = async (e) => {
     e.preventDefault();
-    try{
-      let contract = new ethers.Contract()
-    }
-    catch{
+    try {
+      let contract = new ethers.Contract(
+        Marketplace.address,
+        Marketplace.abi,
+        gSigner
+      );
+      let { hash, keywordString } = createHash(data.keywords);
+      let val = ethers.utils.parseEther(`${data.amount * data.number}`);
 
+      let tx = await contract.createCoupons(
+        // multiply the amount to 10 ^ 18
+        ethers.utils.parseEther(`${data.amount}`),
+        data.number,
+        hash,
+        {
+          value: val,
+        }
+      );
+      await tx.wait();
+      alert("Coupons created successfully");
+      setQrString(keywordString);
+      setData({});
+    } catch (err) {
+      console.log(err);
+      alert("Error creating coupons");
     }
+  };
 
-  }
-  
-  const onSubmit = () => {
+  const createHash = (keywords) => {
     const randomString =
       Math.random().toString(10).substring(2, 4) +
       Math.random().toString(12).substring(2, 10).toUpperCase();
-    const keywordString = data.keywords
-      ? `${data.keywords}${randomString}`
+    const keywordString = keywords
+      ? `${keywords}${randomString}`
       : `CRYCOP${randomString}`;
-    console.log(keywordString);
-    setQrString(`http://localhost:3000/${keywordString}`);
+    const hash = sha256(keywordString);
+    return { hash, keywordString };
   };
   return (
     <div className=" flex flex-col gap-4 m-auto mt-6 p-4">
@@ -84,7 +105,9 @@ function CreatorForm() {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-left mx-0 my-1">Validity duration of coupons</label>
+            <label className="text-left mx-0 my-1">
+              Validity duration of coupons
+            </label>
             <input
               type="number"
               name="expiryDate"
@@ -133,8 +156,8 @@ function CreatorForm() {
           </div>
 
           <button
-            class="relative mt-5 inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium  rounded-lg group border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  "
-            onClick={onSubmit}>
+            className="relative mt-5 inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium  rounded-lg group border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  "
+            onClick={createCoupons}>
             <span class="relative px-5 py-2.5 transition-all ease-in duration-75  hover:bg-[#7018ff] bg-[#090015] rounded-md  w-full">
               Create Coupons
             </span>
@@ -142,9 +165,16 @@ function CreatorForm() {
         </>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <div className="bg-white p-3 rounded-md ">
-            <QRCode id="qrCodeEl" size={150} value={qrString} />
+          <div className="bg-white p-3 rounded-md flex flex-col justify-center items-center">
+            <QRCode
+              id="qrCodeEl"
+              size={150}
+              value={`http://localhost:3000/claim/${qrString}`}
+            />
           </div>
+          <h3 className="font-bold font-sans tracking-wide mt-2">
+            Your Code: {qrString}
+          </h3>
           <button
             class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mt-4 overflow-hidden text-sm font-medium  rounded-lg border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  "
             onClick={downloadQRCode}

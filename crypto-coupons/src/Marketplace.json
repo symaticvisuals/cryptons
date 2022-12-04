@@ -1,0 +1,72 @@
+{
+  "address": "0x759Ce4A6ED160b3076FE0edB6f842ba6B4055db1",
+  "abi": [
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "NewCouponItem",
+      "inputs": [
+        { "type": "string", "name": "identifier", "indexed": false },
+        { "type": "address", "name": "owner", "indexed": false },
+        { "type": "uint256", "name": "pricePerCoupon", "indexed": false },
+        { "type": "uint256", "name": "numOfRedeems", "indexed": false }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "claimCheck",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [{ "type": "string", "name": "Ihash" }],
+      "outputs": [{ "type": "bool" }]
+    },
+    {
+      "type": "function",
+      "name": "createCoupons",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [
+        { "type": "uint256", "name": "_price" },
+        { "type": "uint256", "name": "_num" },
+        { "type": "string", "name": "identifierHash" }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "getRemainingPool",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [{ "type": "string", "name": "Ihash" }],
+      "outputs": [{ "type": "uint256" }]
+    },
+    {
+      "type": "function",
+      "name": "isExists",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [{ "type": "string", "name": "key" }],
+      "outputs": [{ "type": "bool" }]
+    },
+    {
+      "type": "function",
+      "name": "reclaimCoupons",
+      "constant": false,
+      "payable": false,
+      "inputs": [{ "type": "string", "name": "Ihash" }],
+      "outputs": [{ "type": "bool" }]
+    },
+    {
+      "type": "function",
+      "name": "redeemCoupon",
+      "constant": false,
+      "payable": false,
+      "inputs": [{ "type": "string", "name": "Ihash" }],
+      "outputs": []
+    }
+  ]
+}
