@@ -3,11 +3,25 @@ import { ColorConstants } from "../../ColorConstants";
 import { WorldIDWidget } from "@worldcoin/id";
 
 import { useNavigate } from "react-router-dom";
+import { LiFiWidget, WidgetConfig } from "@lifi/widget";
+import { useMemo } from "react";
 
 function RedeemForm() {
   const [worldIDProof, setWorldIDProof] = React.useState(null);
   const [id, setId] = useState();
   const navigate = useNavigate();
+
+  const widgetConfig = {
+    integrator: "Cryptons",
+    containerStyle: {
+      border: "1px solid rgb(234, 234, 234)",
+      borderRadius: "16px",
+    },
+
+    // It can be either standard, expandable, or drawer
+    variant: "expandable",
+  };
+
   return (
     <div className=" flex flex-col gap-4 m-auto mt-6 p-4">
       <div className="flex flex-col">
@@ -48,6 +62,8 @@ function RedeemForm() {
             Claim Bounty
           </span>
         </button>
+
+        <LiFiWidget config={widgetConfig} variant="expandable" />
       </div>
     </div>
   );

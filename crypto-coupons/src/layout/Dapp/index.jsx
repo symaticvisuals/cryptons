@@ -32,6 +32,7 @@ function DApp() {
         // backgroundPosition: "center",
       }}>
       <div className=" h-full">
+        
         <Web3StateContext.Provider value={{ web3State, setWeb3State }}>
           <gSignerContext.Provider value={{ gSigner, setGSigner }}>
             <SocialLoginSDKContext.Provider
