@@ -1,7 +1,6 @@
 
 // import { getSocialLoginSDK, socialLoginSDK } from "@biconomy/web3-auth";
 import React, { useState } from "react";
-import { optInSubscription } from "../../backend/pushNotif";
 
 import "@biconomy/web3-auth/dist/src/style.css";
 import { ColorConstants } from "../../ColorConstants";
@@ -9,15 +8,7 @@ import { CreatorForm } from "./creator-form";
 import { RedeemForm } from "./redeem-form";
 
 function CreatorPage() {
-  const [data, setData] = useState("No result");
-
   const [checked, setChecked] = useState(false);
-  const [formData, setFormData] = useState({
-    amount: 0,
-    number_of_coupons: 0,
-    expiry_date: "",
-    keywords: "CRYPTONS",
-  });
 
   return (
     <div className="flex justify-center mt-[4vh]  h-full overflow-y-auto">
@@ -31,7 +22,7 @@ function CreatorPage() {
         <h1 className="text-4xl text-[#7018ff] font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
           {!checked ? `Generate Coupons` : `Claim Coupons`}
         </h1>
- 
+
         <label class="inline-flex relative items-center cursor-pointer mt-2">
           <input
             type="checkbox"

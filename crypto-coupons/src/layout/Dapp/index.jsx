@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ColorConstants } from "../../ColorConstants";
 import {
@@ -17,8 +17,7 @@ function DApp() {
     chainId: "80001",
   };
   const [web3State, setWeb3State] = useState(initialState);
-  const { provider, web3Provider, ethersProvider, address, chainId } =
-    web3State;
+
   const [socialLoginSDK, setSocialLoginSDK] = useState(null);
   const [gSigner, setGSigner] = useState(null);
 

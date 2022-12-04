@@ -7,11 +7,9 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import ClaimLayout from "../layout/Claim";
-import { Claim } from "../pages/claim";
-import { Navigate } from "react-router-dom";
 
-const Constants = require("./Constants");
+import { Claim } from "../pages/claim";
+
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

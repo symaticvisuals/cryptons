@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ColorConstants } from "../../ColorConstants";
 import { WorldIDWidget } from "@worldcoin/id";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 function RedeemForm() {

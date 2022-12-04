@@ -1,15 +1,14 @@
 import { ethers } from "ethers";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { gSignerContext, Web3StateContext } from "../../contexts/dappContexts";
+import { gSignerContext } from "../../contexts/dappContexts";
 import { sha256 } from "js-sha256";
-import { Navigate } from "react-router-dom";
+
 import Marketplace from "../../Marketplace.json";
 function Claim() {
   const { claimId } = useParams();
-  const { web3State } = React.useContext(Web3StateContext);
+
   const { gSigner } = useContext(gSignerContext);
-  const [tx, setTx] = useState(null);
 
   const redeemBounty = async () => {
     try {
