@@ -6,7 +6,7 @@ function ClaimLayout() {
   return (
     <div
       className="min-h-screen text-white font-sans"
-      style={{ background: ColorConstants.fadedBlack }}>
+      style={{ background: ColorConstants.background }}>
       <Outlet />
     </div>
   );

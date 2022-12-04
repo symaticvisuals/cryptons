@@ -7,6 +7,7 @@ const ColorConstants = {
   fadedBlack: "#0c1417",
   fadedWhite: "#d1d4d8",
   greenDark: "#0f0f0f",
+  background: "#090015"
 };
 
 export { ColorConstants };

@@ -43,48 +43,48 @@ function CreatorForm() {
     setQrString(`http://localhost:3000/${keywordString}`);
   };
   return (
-    <div className=" flex flex-col gap-4 m-auto mt-10 p-4">
+    <div className=" flex flex-col gap-4 m-auto mt-6 p-4">
       {!qrString ? (
         <>
           <div className="flex flex-col">
-            <label className="text-left">The Amount of Bounty</label>
+            <label className="text-left mx-0 my-1">Value per Coupon</label>
             <input
               type="number"
               name="amount"
               id=""
               onChange={onChange}
               placeholder="Amount"
-              className="rounded-lg border-none focus:ring-0 py-3 px-5"
+              className="rounded-lg  focus:border-[#7018ff] focus:ring-0 py-3 px-5"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-left">Number of Coupons</label>
+            <label className="text-left mx-0 my-1">Number of Coupons</label>
             <input
               type="number"
               name="number"
               id=""
               onChange={onChange}
               placeholder="Coupons"
-              className="rounded-lg border-none focus:ring-0 py-3 px-5"
+              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-left">Expiry Date for Coupons</label>
+            <label className="text-left mx-0 my-1">Validity duration of coupons</label>
             <input
-              type="date"
+              type="number"
               name="expiryDate"
               id=""
               onChange={onChange}
-              placeholder="Date"
-              className="rounded-lg border-none focus:ring-0 py-3 px-5"
+              placeholder="in Days ( currently in minutes )"
+              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-left">Keywords for Coupon</label>
+            <label className="text-left mx-0 my-1">Keywords for Coupon</label>
             <input
               type="text"
               name="keywords"
@@ -94,7 +94,7 @@ function CreatorForm() {
                 onChange(e, 6);
               }}
               placeholder="Keywords"
-              className="rounded-lg border-none focus:ring-0 py-3 px-5"
+              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
@@ -116,14 +116,14 @@ function CreatorForm() {
               }}
               className="p-3 accent-lime-200 rounded-md checked:bg-[#0d8469] checked:text-black"
             />
-            <label>Enable OptIn</label>
+            <label>Opt In for PUSH Notification</label>
           </div>
 
           <button
-            class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium  rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 text-white hover:text-gray-900 focus:outline-none  "
+            class="relative mt-5 inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium  rounded-lg group border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  "
             onClick={onSubmit}>
-            <span class="relative px-5 py-2.5 transition-all ease-in duration-75   bg-gray-900 rounded-md group-hover:bg-opacity-0 w-full">
-              Deploy Bounty
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75  hover:bg-[#7018ff] bg-[#090015] rounded-md  w-full">
+              Create Coupons
             </span>
           </button>
         </>
@@ -133,10 +133,10 @@ function CreatorForm() {
             <QRCode id="qrCodeEl" size={150} value={qrString} />
           </div>
           <button
-            class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mt-4 overflow-hidden text-sm font-medium  rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 text-white hover:text-gray-900 focus:outline-none  "
+            class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mt-4 overflow-hidden text-sm font-medium  rounded-lg border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  "
             onClick={downloadQRCode}
             disabled={false}>
-            <span class="relative px-5 py-2.5 transition-all ease-in duration-75   bg-gray-900 rounded-md group-hover:bg-opacity-0 w-full">
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 hover:bg-[#7018ff] bg-[#090015] rounded-md w-full">
               Download to Share
             </span>
           </button>
