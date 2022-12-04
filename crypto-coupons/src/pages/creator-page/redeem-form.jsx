@@ -34,8 +34,8 @@ function RedeemForm() {
         </div>
         <button
           disabled={!worldIDProof}
-          class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mt-4 overflow-hidden text-sm font-medium  rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 text-white hover:text-gray-900 focus:outline-none  ">
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75   bg-gray-900 rounded-md group-hover:bg-opacity-0 w-full">
+          class="relative inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mt-4 overflow-hidden text-sm font-medium  rounded-lg border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  ">
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-75  hover:bg-[#7018ff] bg-[#090015] w-full">
             Claim Bounty
           </span>
         </button>

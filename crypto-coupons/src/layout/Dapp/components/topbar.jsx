@@ -140,7 +140,7 @@ function TopBar() {
         <button
           onClick={() => callConnectWallet()}
           type="button"
-          classNmae=" text-white border-white border font-sans bg-[#090015] hover:bg-[#7018ff] hover:border-[#7018ff]transition-all ease-linear duration-200   focus:ring-1 focus:outline-none   font-medium rounded-lg text-sm px-5 py-3 text-center">
+          className=" text-white border-white border font-sans bg-[#090015] hover:bg-[#7018ff] hover:border-[#7018ff] transition-all ease-linear duration-200   focus:ring-1 focus:outline-none   font-medium rounded-lg text-sm px-5 py-3 text-center">
           {!address ? `Connect Wallet` : splitAddressAndMakeShorter(address)}
         </button>
       </div>

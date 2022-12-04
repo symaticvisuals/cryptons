@@ -28,10 +28,10 @@ function CreatorPage() {
           Cryptons Creators
         </h1> */}
 
-        <h1 className="text-4xl text-[#f9f9f9] font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
-          {!checked ? "Generate Coupons" : "Claim Coupons"}
+        <h1 className="text-4xl text-[#7018ff] font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
+          {!checked ? `Generate Coupons` : `Claim Coupons`}
         </h1>
-
+ 
         <label class="inline-flex relative items-center cursor-pointer mt-2">
           <input
             type="checkbox"
@@ -41,7 +41,7 @@ function CreatorPage() {
               setChecked(!checked);
             }}
           />
-          <div class="w-14 h-7  peer-focus:outline-none rounded-full peer bg-gray-700 peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-black  after:rounded-full after:h-6 after:w-6 after:transition-all border-gray-600 peer-checked:bg-[#7018ff]"></div>
+          <div class="w-14 h-7  peer-focus:outline-none rounded-full peer bg-gray-700 peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-black  after:rounded-full after:h-6 after:w-6 after:transition-all border-gray-600 peer-checked:bg-white"></div>
           <span class="ml-3 text-sm font-medium  text-gray-300">
             Toggle to Claim Coupon
           </span>
