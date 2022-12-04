@@ -13,6 +13,7 @@ function Claim() {
   const { web3State } = useContext(Web3StateContext);
   const { address } = web3State;
   React.useEffect(() => {
+    console.log(claimId);
     if (claim) {
       sendNotification(address, `Your coupon has been claimed successfully`);
     } 

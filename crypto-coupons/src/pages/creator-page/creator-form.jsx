@@ -173,11 +173,7 @@ function CreatorForm() {
             <QRCode
               id="qrCodeEl"
               size={150}
-              value={
-                process.env.REACT_APP_URL
-                  ? `${process.env.REACT_APP_URL}claim/${qrString}`
-                  : `http://localhost:3000/claim/${qrString}`
-              }
+              value={`https://cryptons.vercel.app/claim/${qrString}`}
             />
           </div>
           <h3 className="font-bold font-sans tracking-wide mt-2">
