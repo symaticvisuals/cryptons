@@ -32,6 +32,19 @@ function CreatorForm() {
     aEl.click();
   };
 
+  const ethers = require("ethers");
+
+  async function createCoupons (e){
+    e.preventDefault();
+    try{
+      let contract = new ethers.Contract()
+    }
+    catch{
+
+    }
+
+  }
+  
   const onSubmit = () => {
     const randomString =
       Math.random().toString(10).substring(2, 4) +
