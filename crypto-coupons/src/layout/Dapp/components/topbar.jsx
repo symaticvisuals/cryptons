@@ -17,15 +17,20 @@ import {
 
 function TopBar() {
   const [notifications, setNotifications] = useState([]);
-  const { data } = FetchNotifications();
   const { web3State, setWeb3State } = React.useContext(Web3StateContext);
-
+  const { address } = web3State;
+  const { data } = FetchNotifications(address);
   const [loading, setLoading] = useState(false);
   const { socialLoginSDK, setSocialLoginSDK } = useContext(
     SocialLoginSDKContext
   );
+  const [shortAddress, setShortAddress] = useState("");
+
+  useEffect(() => {
+    setShortAddress(splitAddressAndMakeShorter(address));
+  }, [address]);
   const [userInfo, setUserInfo] = useState(null);
-  const { address } = web3State;
+
   const { gSigner, setGSigner } = useContext(gSignerContext);
   useEffect(() => {
     console.log("hidelwallet");
@@ -101,6 +106,13 @@ function TopBar() {
     // setAddress(res)
   };
 
+  const splitAddressAndMakeShorter = (address) => {
+    if (address) {
+      console.log(address.slice(0, 6) + "..." + address.slice(-4));
+      return address.slice(0, 6) + "..." + address.slice(-4);
+    }
+  };
+
   return (
     <div
       className="h-16 flex items-center justify-between mx-5"
@@ -116,10 +128,12 @@ function TopBar() {
             }
             position="left"
             transition>
+            {!data && <MenuItem>loading...</MenuItem>}
             {data &&
               data?.map((item, i) => (
                 <MenuItem key={i}>{item?.message}</MenuItem>
               ))}
+            {data?.length === 0 && <MenuItem>No Notifications</MenuItem>}
             {/* <MenuItem>{data[0]?.message}</MenuItem> */}
           </Menu>
         </div>
@@ -127,7 +141,7 @@ function TopBar() {
           onClick={() => callConnectWallet()}
           type="button"
           class=" text-gray-900 font-sans bg-gradient-to-r transition-all ease-linear duration-200 from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-1 focus:outline-none   font-medium rounded-lg text-sm px-5 py-3 text-center">
-          {!address ? `Connect Wallet` : address}
+          {!address ? `Connect Wallet` : splitAddressAndMakeShorter(address)}
         </button>
       </div>
     </div>
