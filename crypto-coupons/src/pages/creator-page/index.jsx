@@ -24,12 +24,12 @@ function CreatorPage() {
       <div
         className="font-sans  tracking-tighter xs:w-full sm:w-full md:w-1/3 lg:1/3"
         style={{ color: ColorConstants.white }}>
-        <h1 className="text-5xl font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
+        {/* <h1 className="text-5xl font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
           Cryptons Creators
-        </h1>
+        </h1> */}
 
-        <h1 className="text-4xl font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
-          {!checked ? "CREATORS" : "REDEEM HERE"}
+        <h1 className="text-4xl text-[#f9f9f9] font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
+          {!checked ? "Generate Coupons" : "Claim Coupons"}
         </h1>
 
         <label class="inline-flex relative items-center cursor-pointer mt-2">
@@ -41,7 +41,7 @@ function CreatorPage() {
               setChecked(!checked);
             }}
           />
-          <div class="w-14 h-7  peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-blue-800 rounded-full peer bg-gray-700 peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-black  after:rounded-full after:h-6 after:w-6 after:transition-all border-gray-600 peer-checked:bg-gradient-to-r from-teal-200 to-lime-200"></div>
+          <div class="w-14 h-7  peer-focus:outline-none rounded-full peer bg-gray-700 peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-black  after:rounded-full after:h-6 after:w-6 after:transition-all border-gray-600 peer-checked:bg-[#7018ff]"></div>
           <span class="ml-3 text-sm font-medium  text-gray-300">
             Toggle to Claim Coupon
           </span>

@@ -1,7 +1,14 @@
+
+
 require("@nomiclabs/hardhat-waffle");
+
+
 require("@nomiclabs/hardhat-ethers");
 const fs = require('fs');
 // const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
+
+const API_URL = process.env.API_URL
+const PRIVATE_KEY = process.env.PRIVATE_KEY
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();

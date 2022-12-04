@@ -115,8 +115,8 @@ function TopBar() {
 
   return (
     <div
-      className="h-16 flex items-center justify-between mx-5"
-      style={{ background: ColorConstants.fadedBlack }}>
+      className="h-16 flex items-center justify-between mx-20 my-5"
+      style={{ background: ColorConstants.background }}>
       <img src={BrandLogo} alt="" className="object-conatain h-12" />
       <div className="flex items-center justify-center">
         <div className="mr-4">
@@ -140,7 +140,7 @@ function TopBar() {
         <button
           onClick={() => callConnectWallet()}
           type="button"
-          class=" text-gray-900 font-sans bg-gradient-to-r transition-all ease-linear duration-200 from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-1 focus:outline-none   font-medium rounded-lg text-sm px-5 py-3 text-center">
+          classNmae=" text-white border-white border font-sans bg-[#090015] hover:bg-[#7018ff] hover:border-[#7018ff]transition-all ease-linear duration-200   focus:ring-1 focus:outline-none   font-medium rounded-lg text-sm px-5 py-3 text-center">
           {!address ? `Connect Wallet` : splitAddressAndMakeShorter(address)}
         </button>
       </div>
