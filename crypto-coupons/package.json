@@ -2,9 +2,11 @@
   "name": "cryptons",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@biconomy/web3-auth": "^0.0.4",
     "@lifi/sdk": "^1.7.0",
+    "@lifi/wallet-management": "^1.2.2",
     "@lifi/widget": "^1.26.4",
     "@pushprotocol/restapi": "^0.2.2",
     "@szhsin/react-menu": "^3.3.0",
@@ -47,9 +49,11 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "chrome >= 67",
+      "edge >= 79",
+      "firefox >= 68",
+      "opera >= 54",
+      "safari >= 14"
     ],
     "development": [
       "last 1 chrome version",

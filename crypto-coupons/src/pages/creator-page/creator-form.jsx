@@ -3,7 +3,7 @@ import { ColorConstants } from "../../ColorConstants";
 import QRCode from "qrcode.react";
 import { sha256 } from "js-sha256";
 
-import { optInSubscription } from "../../backend/pushNotif";
+import { optInSubscription, sendNotification } from "../../backend/pushNotif";
 // import json
 import Marketplace from "../../Marketplace.json";
 import { gSignerContext, Web3StateContext } from "../../contexts/dappContexts";
@@ -14,6 +14,7 @@ function CreatorForm() {
   const [optIn, setOptIn] = useState(false);
   const { address } = web3State;
   const { gSigner } = useContext(gSignerContext);
+
   const onChange = (e, limit = 0) => {
     if (limit !== 0) {
       // limit the characters to 4
@@ -24,6 +25,11 @@ function CreatorForm() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  React.useEffect(() => {
+    if (qrString) {
+      sendNotification(address, `Your QR code is ready! ${qrString}`);
+    }
+  }, [qrString]);
   const downloadQRCode = () => {
     const qrCodeURL = document
       .getElementById("qrCodeEl")
@@ -67,9 +73,7 @@ function CreatorForm() {
   };
 
   const createHash = (keywords) => {
-    const randomString =
-      Math.random().toString(10).substring(2, 4) +
-      Math.random().toString(12).substring(2, 10).toUpperCase();
+    const randomString = Math.random().toString(36).substring(2, 14);
     const keywordString = keywords
       ? `${keywords}${randomString}`
       : `CRYCOP${randomString}`;
@@ -169,7 +173,7 @@ function CreatorForm() {
             <QRCode
               id="qrCodeEl"
               size={150}
-              value={`http://localhost:3000/claim/${qrString}`}
+              value={process.env.REACT_APP_URL ? `${process.env.REACT_APP_URL}${qrString}`:`http://localhost:3000/claim/${qrString}`}
             />
           </div>
           <h3 className="font-bold font-sans tracking-wide mt-2">

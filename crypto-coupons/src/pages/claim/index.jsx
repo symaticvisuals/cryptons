@@ -1,15 +1,22 @@
 import { ethers } from "ethers";
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { gSignerContext } from "../../contexts/dappContexts";
+import { gSignerContext, Web3StateContext } from "../../contexts/dappContexts";
 import { sha256 } from "js-sha256";
 
 import Marketplace from "../../Marketplace.json";
+import { sendNotification } from "../../backend/pushNotif";
 function Claim() {
   const { claimId } = useParams();
-
   const { gSigner } = useContext(gSignerContext);
-
+  const [claim, setClaim] = React.useState(false);
+  const { web3State } = useContext(Web3StateContext);
+  const { address } = web3State;
+  React.useEffect(() => {
+    if (claim) {
+      sendNotification(address, `Your coupon has been claimed successfully`);
+    } 
+  }, [claim]);
   const redeemBounty = async () => {
     try {
       let contract = new ethers.Contract(
@@ -23,7 +30,7 @@ function Claim() {
         hash
       );
       await tx.wait();
-      alert("Coupons Claimed successfully");
+      setClaim(true);
     } catch (err) {
       console.log(err);
       alert("Error Claiming coupons");

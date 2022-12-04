@@ -14,11 +14,13 @@ import {
   SocialLoginSDKContext,
   Web3StateContext,
 } from "../../../contexts/dappContexts";
+import { useNavigate } from "react-router-dom";
 
 function TopBar() {
   const [notifications, setNotifications] = useState([]);
   const { web3State, setWeb3State } = React.useContext(Web3StateContext);
   const { address } = web3State;
+  const navigate = useNavigate();
   const { data } = FetchNotifications(address);
   const [loading, setLoading] = useState(false);
   const { socialLoginSDK, setSocialLoginSDK } = useContext(
@@ -137,6 +139,14 @@ function TopBar() {
             {/* <MenuItem>{data[0]?.message}</MenuItem> */}
           </Menu>
         </div>
+        <button
+          onClick={() => {
+            navigate("/swap", { replace: true });
+          }}
+          type="button"
+          className="mr-2 text-white border-white border font-sans bg-[#090015] hover:bg-[#7018ff] hover:border-[#7018ff] transition-all ease-linear duration-200   focus:ring-1 focus:outline-none   font-medium rounded-lg text-sm px-5 py-3 text-center">
+          Swap Tokens
+        </button>
         <button
           onClick={() => callConnectWallet()}
           type="button"

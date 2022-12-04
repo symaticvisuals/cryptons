@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { Claim } from "../pages/claim";
-
+import { LiFi } from "../pages/lifiWidget";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +20,7 @@ export const router = createBrowserRouter(
         <Route path="/claim">
           <Route path=":claimId" element={<Claim />} />
         </Route>
+        <Route path="/swap/*" element={<LiFi />} />
       </Route>
 
       <Route path="/details" element={<>Invalid ID</>}></Route>
