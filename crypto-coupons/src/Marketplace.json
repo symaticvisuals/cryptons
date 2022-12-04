@@ -1,5 +1,5 @@
 {
-  "address": "0x759Ce4A6ED160b3076FE0edB6f842ba6B4055db1",
+  "address": "0x97a94D4845313FAa3FaD41F2d6824a800DAD589e",
   "abi": [
     {
       "type": "event",
@@ -33,6 +33,15 @@
         { "type": "string", "name": "identifierHash" }
       ],
       "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "getOwnerAndPricePerCoupon",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [{ "type": "string", "name": "Ihash" }],
+      "outputs": [{ "type": "address" }, { "type": "uint256" }]
     },
     {
       "type": "function",

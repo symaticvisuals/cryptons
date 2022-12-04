@@ -16,7 +16,7 @@ import {
 } from "../../../contexts/dappContexts";
 
 function TopBar() {
-
+  const [notifications, setNotifications] = useState([]);
   const { web3State, setWeb3State } = React.useContext(Web3StateContext);
   const { address } = web3State;
   const { data } = FetchNotifications(address);
