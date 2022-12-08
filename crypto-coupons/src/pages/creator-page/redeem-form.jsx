@@ -41,7 +41,7 @@ function RedeemForm() {
           />
         </div>
         <button
-          disabled={!worldIDProof}
+          // disabled={!worldIDProof}
           onClick={() => {
             navigate(`/claim/${id}`);
           }}
