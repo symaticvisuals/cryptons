@@ -10,8 +10,9 @@ import {
 
 import { Claim } from "../pages/claim";
 import { LiFi } from "../pages/lifiWidget";
+import { createHashRouter } from "react-router-dom";
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
   createRoutesFromElements(
     <>
       {/* <Route path="/" element={<ProtectedRoutes />}> */}

@@ -173,7 +173,7 @@ function CreatorForm() {
             <QRCode
               id="qrCodeEl"
               size={150}
-              value={`https://cryptons.vercel.app/claim/${qrString}`}
+              value={`https://cryptons.vercel.app/#/claim/${qrString}`}
             />
           </div>
           <h3 className="font-bold font-sans tracking-wide mt-2">
