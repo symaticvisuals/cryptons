@@ -10,18 +10,19 @@ import {
 
 import { Claim } from "../pages/claim";
 import { LiFi } from "../pages/lifiWidget";
-import { createHashRouter } from "react-router-dom";
 
-export const router = createHashRouter(
+
+export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       {/* <Route path="/" element={<ProtectedRoutes />}> */}
       <Route path="/" element={<DApp />}>
         <Route path="" element={<CreatorPage />} />
-        <Route path="/claim">
+        <Route path="/home" element={<LandingPage />} />
+        <Route path="claim">
           <Route path=":claimId" element={<Claim />} />
         </Route>
-        <Route path="/swap/*" element={<LiFi />} />
+        <Route path="swap/*" element={<LiFi />} />
       </Route>
 
       <Route path="/details" element={<>Invalid ID</>}></Route>
