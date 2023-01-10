@@ -11,7 +11,7 @@ function CreatorPage() {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className="flex justify-center mt-[4vh]  h-full overflow-y-auto">
+    <div className="flex justify-center mt-[4vh]  h-full overflow-y-auto font-sans">
       <div
         className="font-sans  tracking-tighter xs:w-full sm:w-full md:w-1/3 lg:1/3"
         style={{ color: ColorConstants.white }}>
@@ -19,7 +19,7 @@ function CreatorPage() {
           Cryptons Creators
         </h1> */}
 
-        <h1 className="text-4xl text-[#7018ff] font-bold bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200 text-transparent">
+        <h1 className="text-4xl font-sans text-[#7018ff] font-bold">
           {!checked ? `Generate Coupons` : `Claim Coupons`}
         </h1>
 
@@ -33,7 +33,7 @@ function CreatorPage() {
             }}
           />
           <div class="w-14 h-7  peer-focus:outline-none rounded-full peer bg-gray-700 peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-black  after:rounded-full after:h-6 after:w-6 after:transition-all border-gray-600 peer-checked:bg-white"></div>
-          <span class="ml-3 text-sm font-medium  text-gray-300">
+          <span class="ml-3 text-sm font-medium  text-gray-300 font-sans">
             Toggle to Claim Coupon
           </span>
         </label>

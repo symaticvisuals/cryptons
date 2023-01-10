@@ -81,35 +81,39 @@ function CreatorForm() {
     return { hash, keywordString };
   };
   return (
-    <div className=" flex flex-col gap-4 m-auto mt-6 p-4">
+    <div className=" flex flex-col gap-4 m-auto mt-6 p-4 font-sans">
       {!qrString ? (
         <>
           <div className="flex flex-col">
-            <label className="text-left mx-0 my-1">Value per Coupon</label>
+            <label className="text-left mx-0 my-1 font-sans">
+              Value per Coupon
+            </label>
             <input
               type="number"
               name="amount"
               id=""
               onChange={onChange}
               placeholder="Amount"
-              className="rounded-lg  focus:border-[#7018ff] focus:ring-0 py-3 px-5"
+              className="rounded-lg  focus:border-[#7018ff] focus:ring-0 py-3 px-5 font-sans"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-left mx-0 my-1">Number of Coupons</label>
+            <label className="text-left mx-0 my-1 font-sans">
+              Number of Coupons
+            </label>
             <input
               type="number"
               name="number"
               id=""
               onChange={onChange}
               placeholder="Coupons"
-              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5"
+              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5 font-sans"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-left mx-0 my-1">
+            <label className="text-left mx-0 my-1 font-sans">
               Validity duration of coupons
             </label>
             <input
@@ -118,13 +122,15 @@ function CreatorForm() {
               id=""
               onChange={onChange}
               placeholder="in Days ( currently in minutes )"
-              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5"
+              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5 font-sans"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-left mx-0 my-1">Keywords for Coupon</label>
+            <label className="text-left mx-0 my-1 font-sans">
+              Keywords for Coupon
+            </label>
             <input
               type="text"
               name="keywords"
@@ -134,7 +140,7 @@ function CreatorForm() {
                 onChange(e, 6);
               }}
               placeholder="Keywords"
-              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5"
+              className="rounded-lg focus:border-[#7018ff]  focus:ring-0 py-3 px-5 font-sans"
               style={{ background: ColorConstants.greenDark }}
             />
           </div>
@@ -154,15 +160,15 @@ function CreatorForm() {
                   optInSubscription(address, gSigner);
                 }
               }}
-              className="p-3 accent-lime-200 rounded-md checked:bg-[#0d8469] checked:text-black"
+              className="p-3 accent-lime-200 rounded-md checked:bg-[#0d8469] checked:text-black font-sans"
             />
-            <label>Opt In for PUSH Notification</label>
+            <label className="font-sans">Opt In for PUSH Notification</label>
           </div>
 
           <button
-            className="relative mt-5 inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium  rounded-lg group border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  "
+            className="relative mt-5 inline-flex items-center justify-center hover:translate-y-1 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium font-sans  rounded-lg group border border-white-2 group-hover:from-teal-300 hover:border-[#7018ff] text-white hover:text-white focus:outline-none  "
             onClick={createCoupons}>
-            <span class="relative px-5 py-2.5 transition-all ease-in duration-75  hover:bg-[#7018ff] bg-[#090015] rounded-md  w-full">
+            <span class="relative px-5 py-2.5 font-sans transition-all ease-in duration-75  hover:bg-[#7018ff] bg-[#090015] rounded-md  w-full">
               Create Coupons
             </span>
           </button>
