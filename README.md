@@ -1,15 +1,40 @@
-﻿# Cryptons
+# Introduction
+Cryptons is a simple mechanism created by symaticvisuals that allows users to generate coupons for sharing their cryptocurrency with others. It is written in JavaScript and provides a straightforward and convenient way to distribute cryptocurrency to friends, family, and other users.
 
-It takes a lot of work to execute multiple transactions to various individuals and go through the tedious procedure of gathering every wallet address in order to send token for any purposes. We came up with a special solution for this. Cryptons will convert your token into a single multi-claimable coupon / multiple coupons of the specified value, together with an easily shareable link and QR code. With getting rid of the necessity for the sender to batch many transactions, we make it simple for any user to submit a gasless claim with just one click.
+# Features
+- Generate unique coupons for specific amounts of cryptocurrency
+- Easy sharing of coupons through email or social media
+- Customizable expiration dates for coupons
+- Secure and encrypted coupon codes
 
-The coupon code are completely private, as they are custom generated based on user given alpha numeric string, getting hased by SHA256. Only the hashed coupon code is getting stored for associating the value of coupon, no centralised storage for coupon codes and a set validity of coupons, after which the issuer can reclaim the tokens if it reamined unclaimed,
-Also we're perfoming multiple checks to not overdistribute multiple claims to single user, by using multiple checks by frontend, api, and on contect view functions.
+# Installation
+To install Cryptons, follow these steps:
 
-So we're releaving the burden of the sender and making it convienient for recievers as well, as they can claim it to their desired wallet without paying any gas fees.
+1. Ensure you have Node.js and npm installed on your system.
+2. Clone the repository from https://github.com/symaticvisuals/cryptons or download the zip file and extract it.
+3. Navigate to the extracted folder using your terminal or command prompt.
+4. Install dependencies by running `npm install`.
+5. To start the application, run `npm start`.
 
-Polygon deployed Contract:
-0x759Ce4A6ED160b3076FE0edB6f842ba6B4055db1
+# Usage
+Using Cryptons is simple and can be done in a few simple steps:
 
-Deployment Link vercel:
+1. Once the application is running, navigate to the home page.
+2. Enter the desired cryptocurrency amount and generate a coupon code.
+3. Share the code with the desired recipient through email, social media, or any other preferred method.
+4. When the recipient receives the code, they can visit the provided URL and enter the code to claim the cryptocurrency.
+5. The cryptocurrency will be transferred to the recipient's wallet instantly.
 
-https://cryptons.vercel.app
+# Contributing
+Contributions to Cryptons are welcome and encouraged. To contribute, please follow these guidelines:
+
+1. Fork the repository and create a new branch for your contribution.
+2. Make necessary changes and commit them with a descriptive and clear commit message.
+3. Test your changes and ensure they do not break the existing functionality.
+4. Submit a pull request with a detailed description of your changes.
+
+# License 
+MIT License
+
+# Contact Information
+If you have any questions, feedback, or concerns about Cryptons, please feel free to contact the author symaticvisuals at symaticvisuals@gmail.com.
